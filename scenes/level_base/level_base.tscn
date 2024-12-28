@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://b648qnlchkj7h"]
+[gd_scene load_steps=7 format=4 uid="uid://b648qnlchkj7h"]
 
 [ext_resource type="Texture2D" uid="uid://cetofg3s4ta7t" path="res://assets/tiles/Terrain (16x16).png" id="1_i0q12"]
 [ext_resource type="PackedScene" uid="uid://chxvlc3u1313a" path="res://scenes/player/player.tscn" id="2_qjfpu"]
+[ext_resource type="PackedScene" uid="uid://ss06m0ctboss" path="res://scenes/bullets/bullet_player.tscn" id="3_3w6vf"]
+[ext_resource type="PackedScene" uid="uid://c6i33lgn5pex8" path="res://scenes/bullets/bullet_enemy.tscn" id="4_pmlnj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x0vfm"]
 texture = ExtResource("1_i0q12")
@@ -213,4 +215,10 @@ tile_map_data = PackedByteArray("AAAAAP//AAAGAAAAAAABAP//AAAGAAAAAAACAP//AAAGAAA
 tile_set = SubResource("TileSet_w7m0q")
 
 [node name="Player" parent="." instance=ExtResource("2_qjfpu")]
-position = Vector2(173, -454)
+position = Vector2(160, -35)
+
+[node name="BulletPlayer" parent="." instance=ExtResource("3_3w6vf")]
+position = Vector2(27, -34)
+
+[node name="BulletEnemy" parent="." instance=ExtResource("4_pmlnj")]
+position = Vector2(69, -33)
