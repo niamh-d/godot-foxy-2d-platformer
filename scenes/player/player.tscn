@@ -155,3 +155,4 @@ dsdsd"
 speed = 150.0
 life_span = 3.0
 bullet_key = 2
+shoot_delay = 0.3
