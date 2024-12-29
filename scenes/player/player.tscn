@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://chxvlc3u1313a"]
+[gd_scene load_steps=13 format=3 uid="uid://chxvlc3u1313a"]
 
 [ext_resource type="Texture2D" uid="uid://cic27lv6wy6gy" path="res://assets/player/player.png" id="1_bd6f1"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_rvjl1"]
 [ext_resource type="PackedScene" uid="uid://db2k2a7ff2w0n" path="res://scenes/player_cam/player_cam.tscn" id="3_0x6kj"]
+[ext_resource type="PackedScene" uid="uid://c67di6btoii57" path="res://scenes/shooter/shooter.tscn" id="4_eqnlj"]
 
 [sub_resource type="Animation" id="Animation_s7dkl"]
 length = 0.001
@@ -149,3 +150,8 @@ theme_override_font_sizes/font_size = 64
 text = "dsdsd
 dsdsd
 dsdsd"
+
+[node name="Shooter" parent="." instance=ExtResource("4_eqnlj")]
+speed = 150.0
+life_span = 3.0
+bullet_key = 2

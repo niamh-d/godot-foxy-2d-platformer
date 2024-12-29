@@ -2,7 +2,7 @@ extends Area2D
 
 class_name Bullet
 
-var _direction: Vector2 = Vector2(100, -50)
+var _direction: Vector2 = Vector2.RIGHT
 var _life_span: float = 5.0
 var _life_time: float = 0.0
 
@@ -16,7 +16,7 @@ func check_expired(delta: float) -> void:
 	if _life_time > _life_span:
 		queue_free()
 
-func setup(pos: Vector2, dir: Vector2, speed: float, life_span: float) -> void:
+func setup(pos: Vector2, dir: Vector2, life_span: float, speed: float) -> void:
 	_direction = dir.normalized() * speed
 	_life_span = life_span
 	global_position = pos

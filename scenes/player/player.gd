@@ -12,6 +12,7 @@ const JUMP_VELOCITY: float = -260.0
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var debug_label: Label = $DebugLabel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var shooter: Node2D = $Shooter
 
 
 var _state: PlayerState = PlayerState.IDLE
@@ -28,6 +29,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	calculate_states()
 	update_debug_label()
+	
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
 func update_debug_label() -> void:
 	debug_label.text = "floor: %s\n%s\nvel: (%.0f, %.0f)" % [
@@ -35,6 +39,10 @@ func update_debug_label() -> void:
 		PlayerState.keys()[_state],
 		velocity.x, velocity.y
 	]
+
+func shoot() -> void:
+	var dir = Vector2.LEFT if sprite_2d.flip_h else Vector2.RIGHT
+	shooter.shoot(dir)
 	
 func get_input() -> void:
 	
