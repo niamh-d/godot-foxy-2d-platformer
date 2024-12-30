@@ -4,6 +4,7 @@ class_name Player
 
 enum PlayerState {IDLE, RUN, JUMP, FALL, HURT}
 
+const FALLEN_OFF: float = 200.0
 const GRAVITY: float = 690.0
 const RUN_SPEED: float = 120.0
 const MAX_FALL: float = 400.0
@@ -21,11 +22,14 @@ const HURT_JUMP_VELOCITY: Vector2 = Vector2(0, -130.0)
 
 var _state: PlayerState = PlayerState.IDLE
 var _is_invincible: bool = false
+var _lives: int = 5
 
 func _ready() -> void:
 	pass # Replace with function body.
 
 func _physics_process(delta: float) -> void:
+	
+	fallen_off()
 	
 	if !is_on_floor():
 		velocity.y += GRAVITY * delta
@@ -38,10 +42,16 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 
+func fallen_off() -> void:
+	if global_position.y < FALLEN_OFF:
+		return
+	reduce_lives(_lives)
+
 func update_debug_label() -> void:
-	debug_label.text = "floor: %s\ninv: %s\nstate: %s\nvel: (%.0f, %.0f)" % [
+	debug_label.text = "floor: %s\ninv: %s\nstate: %s\nlives: %d\nvel: (%.0f, %.0f)" % [
 		is_on_floor(), _is_invincible,
 		PlayerState.keys()[_state],
+		_lives,
 		velocity.x, velocity.y
 	]
 
@@ -101,6 +111,22 @@ func calculate_states() -> void:
 		else:
 			set_state(PlayerState.JUMP)
 
+func is_player_dead() -> bool:
+	return _lives <= 0
+
+func calc_remaining_hearts(damage: int) -> int:
+	var hearts_remaining = _lives - damage
+	return hearts_remaining if hearts_remaining > 0 else 0
+
+func reduce_lives(damage: int) -> bool:
+	_lives = calc_remaining_hearts(damage)
+	SignalManager.on_player_hit.emit(_lives)
+	if is_player_dead():
+		SignalManager.on_game_over.emit()
+		set_physics_process(false)
+		print("player dies")
+	return is_player_dead()
+
 func go_invincible() -> void:
 	_is_invincible = true
 	invincible_player.play("invincible")
@@ -113,6 +139,8 @@ func apply_hurt_jump() -> void:
 
 func apply_hit() -> void:
 	if _is_invincible:
+		return
+	if reduce_lives(1):
 		return
 	go_invincible()
 	set_state(PlayerState.HURT)

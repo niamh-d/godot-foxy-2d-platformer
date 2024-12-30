@@ -184,13 +184,15 @@ shape = SubResource("RectangleShape2D_mi6i2")
 [node name="PlayerCam" parent="." instance=ExtResource("3_0x6kj")]
 
 [node name="DebugLabel" type="Label" parent="."]
-offset_left = -16.0
-offset_top = -74.0
-offset_right = 339.0
-offset_bottom = 196.0
+offset_left = -17.0
+offset_top = -120.0
+offset_right = 223.0
+offset_bottom = 332.0
 scale = Vector2(0.199999, 0.240002)
 theme_override_font_sizes/font_size = 64
 text = "dsdsd
+dsdsd
+dsdsd
 dsdsd
 dsdsd"
 
