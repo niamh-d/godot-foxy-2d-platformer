@@ -31,7 +31,10 @@ func die():
 	set_physics_process(false)
 	hide()
 	
-	# sounds
+	SignalManager.on_create_object.emit(
+		global_position,
+		Constants.ObjectType.EXPLOSION
+	)
 	
 	queue_free()
 
