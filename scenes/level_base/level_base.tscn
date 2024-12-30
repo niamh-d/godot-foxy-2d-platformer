@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://b648qnlchkj7h"]
+[gd_scene load_steps=10 format=4 uid="uid://b648qnlchkj7h"]
 
 [ext_resource type="Texture2D" uid="uid://cetofg3s4ta7t" path="res://assets/tiles/Terrain (16x16).png" id="1_i0q12"]
 [ext_resource type="Script" path="res://scenes/level_base/level_base.gd" id="1_jx5v4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bhljxfa5rhhm3" path="res://scenes/object_maker/object_maker.tscn" id="3_1b3y4"]
 [ext_resource type="PackedScene" uid="uid://dtuxao4rtcgnm" path="res://scenes/enemies/snail.tscn" id="5_1mdrx"]
 [ext_resource type="PackedScene" uid="uid://dcqs8k16yfvxt" path="res://scenes/enemies/frog.tscn" id="6_3t86g"]
+[ext_resource type="PackedScene" uid="uid://cgq0k4uvklkvb" path="res://scenes/enemies/eagle.tscn" id="7_kr0n6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x0vfm"]
 texture = ExtResource("1_i0q12")
@@ -230,7 +231,7 @@ tile_map_data = PackedByteArray("AAAAAP//AAAGAAAAAAABAP//AAAGAAAAAAACAP//AAAGAAA
 tile_set = SubResource("TileSet_w7m0q")
 
 [node name="Player" parent="." instance=ExtResource("2_qjfpu")]
-position = Vector2(160, -35)
+position = Vector2(244, -34)
 
 [node name="ObjectMaker" parent="." instance=ExtResource("3_1b3y4")]
 
@@ -240,4 +241,7 @@ position = Vector2(160, -35)
 position = Vector2(427, -25)
 
 [node name="Frog" parent="." instance=ExtResource("6_3t86g")]
-position = Vector2(-91, -173)
+position = Vector2(1, -139)
+
+[node name="Eagle" parent="." instance=ExtResource("7_kr0n6")]
+position = Vector2(304, -223)
