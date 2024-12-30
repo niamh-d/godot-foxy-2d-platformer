@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.3", "Mobile")
 
 [autoload]
 
+SoundManager="*res://singletons/sound_manager.gd"
 SignalManager="*res://singletons/signal_manager.gd"
 
 [display]

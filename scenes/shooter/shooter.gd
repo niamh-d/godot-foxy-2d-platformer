@@ -30,6 +30,7 @@ func shoot(dir: Vector2) -> void:
 	)
 	
 	shooter_timer.start()
+	SoundManager.play_clip(sound, SoundManager.SOUND_LASER)
 
 
 func _on_shooter_timer_timeout() -> void:

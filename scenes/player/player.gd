@@ -18,6 +18,7 @@ const HURT_JUMP_VELOCITY: Vector2 = Vector2(0, -130.0)
 @onready var invincible_timer: Timer = $InvincibleTimer
 @onready var invincible_player: AnimationPlayer = $InvinciblePlayer
 @onready var hurt_timer: Timer = $HurtTimer
+@onready var sound: AudioStreamPlayer2D = $Sound
 
 
 var _state: PlayerState = PlayerState.IDLE
@@ -75,12 +76,20 @@ func get_input() -> void:
 	
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		SoundManager.play_clip(sound, SoundManager.SOUND_JUMP)
 	
 	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL)
 
 func set_state(new_state: PlayerState) -> void:
 	if new_state == _state:
 		return
+	
+	if _state == PlayerState.FALL:
+		if (
+			new_state == PlayerState.IDLE ||
+			new_state == PlayerState.RUN
+		):
+			SoundManager.play_clip(sound, SoundManager.SOUND_LAND)
 	
 	_state = new_state
 	
@@ -142,6 +151,7 @@ func apply_hit() -> void:
 		return
 	if reduce_lives(1):
 		return
+	SoundManager.play_clip(sound, SoundManager.SOUND_DAMAGE)
 	go_invincible()
 	set_state(PlayerState.HURT)
 
