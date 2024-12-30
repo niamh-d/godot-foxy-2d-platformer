@@ -35,6 +35,10 @@ func die():
 		global_position,
 		Constants.ObjectType.EXPLOSION
 	)
+	SignalManager.on_create_object.emit(
+		global_position,
+		Constants.ObjectType.PICKUP
+	)
 	
 	queue_free()
 
