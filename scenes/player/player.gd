@@ -23,7 +23,7 @@ const HURT_JUMP_VELOCITY: Vector2 = Vector2(0, -130.0)
 
 var _state: PlayerState = PlayerState.IDLE
 var _is_invincible: bool = false
-var _lives: int = 2
+var _lives: int = 5
 
 func _ready() -> void:
 	call_deferred("late_setup")
@@ -129,14 +129,18 @@ func is_player_dead() -> bool:
 func calc_remaining_hearts(damage: int) -> int:
 	var hearts_remaining = _lives - damage
 	return hearts_remaining if hearts_remaining > 0 else 0
+	
+func kill() -> void:
+	SignalManager.on_game_over.emit()
+	set_physics_process(false)
+	animation_player.stop()
+	invincible_player.stop()
 
 func reduce_lives(damage: int) -> bool:
 	_lives = calc_remaining_hearts(damage)
 	SignalManager.on_player_hit.emit(_lives)
 	if is_player_dead():
-		SignalManager.on_game_over.emit()
-		set_physics_process(false)
-		print("player dies")
+		kill()
 	return is_player_dead()
 
 func go_invincible() -> void:
@@ -152,9 +156,9 @@ func apply_hurt_jump() -> void:
 func apply_hit() -> void:
 	if _is_invincible:
 		return
+	SoundManager.play_clip(sound, SoundManager.SOUND_DAMAGE)
 	if reduce_lives(1):
 		return
-	SoundManager.play_clip(sound, SoundManager.SOUND_DAMAGE)
 	go_invincible()
 	set_state(PlayerState.HURT)
 
