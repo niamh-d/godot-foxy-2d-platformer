@@ -30,6 +30,7 @@ func die():
 	
 	set_physics_process(false)
 	hide()
+	SignalManager.on_enemy_hit.emit(points)
 	
 	SignalManager.on_create_object.emit(
 		global_position,

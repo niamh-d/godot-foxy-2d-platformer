@@ -13,6 +13,10 @@ func _ready() -> void:
 	SignalManager.on_player_hit.connect(update_hearts)
 	SignalManager.on_level_started.connect(update_hearts)
 	SignalManager.on_game_over.connect(on_game_over)
+	SignalManager.on_score_updated.connect(on_score_updated)
+
+func on_score_updated(score: int) -> void:
+	score_label.text = "%05d" % score
 
 func update_hearts(lives: int) -> void:
 	for life in range(_hearts.size()):

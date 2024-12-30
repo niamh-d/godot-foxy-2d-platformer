@@ -34,7 +34,7 @@ size_flags_vertical = 0
 [node name="ScoreLabel" type="Label" parent="MC/HBC"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "000"
+text = "00000"
 label_settings = ExtResource("1_aotm5")
 
 [node name="HBCHearts" type="HBoxContainer" parent="MC/HBC"]
