@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://b648qnlchkj7h"]
+[gd_scene load_steps=12 format=4 uid="uid://b648qnlchkj7h"]
 
 [ext_resource type="Texture2D" uid="uid://cetofg3s4ta7t" path="res://assets/tiles/Terrain (16x16).png" id="1_i0q12"]
 [ext_resource type="Script" path="res://scenes/level_base/level_base.gd" id="1_jx5v4"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dtuxao4rtcgnm" path="res://scenes/enemies/snail.tscn" id="5_1mdrx"]
 [ext_resource type="PackedScene" uid="uid://dcqs8k16yfvxt" path="res://scenes/enemies/frog.tscn" id="6_3t86g"]
 [ext_resource type="PackedScene" uid="uid://cgq0k4uvklkvb" path="res://scenes/enemies/eagle.tscn" id="7_kr0n6"]
+[ext_resource type="PackedScene" uid="uid://dt544v6qfh1k4" path="res://scenes/ball_spikes/ball_spikes.tscn" id="8_c3c77"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x0vfm"]
 texture = ExtResource("1_i0q12")
@@ -221,6 +222,12 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_x0vfm")
 
+[sub_resource type="Curve2D" id="Curve2D_jmjp8"]
+_data = {
+"points": PackedVector2Array(21.8633, 35.3176, -21.8633, -35.3176, -46, -254, -10.0908, -34.8972, 10.0908, 34.8972, 214, -257, 40.363, -12.193, -40.363, 12.193, 166, -162, 13.0339, 20.3917, -13.0339, -20.3917, -10, -185, -14.085, 36.1585, 14.085, -36.1585, -46, -254)
+}
+point_count = 5
+
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_jx5v4")
 
@@ -231,7 +238,7 @@ tile_map_data = PackedByteArray("AAAAAP//AAAGAAAAAAABAP//AAAGAAAAAAACAP//AAAGAAA
 tile_set = SubResource("TileSet_w7m0q")
 
 [node name="Player" parent="." instance=ExtResource("2_qjfpu")]
-position = Vector2(244, -34)
+position = Vector2(114, -82)
 
 [node name="ObjectMaker" parent="." instance=ExtResource("3_1b3y4")]
 
@@ -240,8 +247,17 @@ position = Vector2(244, -34)
 [node name="Snail" parent="Enemies" instance=ExtResource("5_1mdrx")]
 position = Vector2(427, -25)
 
-[node name="Frog" parent="." instance=ExtResource("6_3t86g")]
+[node name="Frog" parent="Enemies" instance=ExtResource("6_3t86g")]
 position = Vector2(1, -139)
 
-[node name="Eagle" parent="." instance=ExtResource("7_kr0n6")]
+[node name="Eagle" parent="Enemies" instance=ExtResource("7_kr0n6")]
 position = Vector2(304, -223)
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Paths"]
+position = Vector2(8, 3)
+curve = SubResource("Curve2D_jmjp8")
+
+[node name="BallSpikes" parent="Paths/Path2D" instance=ExtResource("8_c3c77")]
+position = Vector2(-46, -254)
