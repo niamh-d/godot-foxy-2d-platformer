@@ -9,6 +9,7 @@ extends Control
 var _hearts: Array = []
 
 func _ready() -> void:
+	on_score_updated(ScoreManager.get_score())
 	_hearts = hbc_hearts.get_children()
 	SignalManager.on_player_hit.connect(update_hearts)
 	SignalManager.on_level_started.connect(update_hearts)
