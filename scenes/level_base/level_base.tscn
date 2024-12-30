@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://b648qnlchkj7h"]
+[gd_scene load_steps=13 format=4 uid="uid://b648qnlchkj7h"]
 
 [ext_resource type="Texture2D" uid="uid://cetofg3s4ta7t" path="res://assets/tiles/Terrain (16x16).png" id="1_i0q12"]
 [ext_resource type="Script" path="res://scenes/level_base/level_base.gd" id="1_jx5v4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dcqs8k16yfvxt" path="res://scenes/enemies/frog.tscn" id="6_3t86g"]
 [ext_resource type="PackedScene" uid="uid://cgq0k4uvklkvb" path="res://scenes/enemies/eagle.tscn" id="7_kr0n6"]
 [ext_resource type="PackedScene" uid="uid://dt544v6qfh1k4" path="res://scenes/ball_spikes/ball_spikes.tscn" id="8_c3c77"]
+[ext_resource type="PackedScene" uid="uid://2g2ndhnvokkh" path="res://scenes/floor_spikes/floor_spikes.tscn" id="9_8e26c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x0vfm"]
 texture = ExtResource("1_i0q12")
@@ -261,3 +262,9 @@ curve = SubResource("Curve2D_jmjp8")
 
 [node name="BallSpikes" parent="Paths/Path2D" instance=ExtResource("8_c3c77")]
 position = Vector2(-46, -254)
+
+[node name="Dangers" type="Node2D" parent="."]
+z_index = -1
+
+[node name="FloorSpikes" parent="Dangers" instance=ExtResource("9_8e26c")]
+position = Vector2(78, -12)
