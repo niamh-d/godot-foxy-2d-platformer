@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://by8nso42m7o6h"]
+
+[ext_resource type="LabelSettings" uid="uid://ch8ac7tioyt53" path="res://assets/LG_cyan_24.tres" id="1_xyir2"]
+
+[node name="HighscoreLabel" type="Label"]
+offset_right = 76.0
+offset_bottom = 25.0
+text = "00000"
+label_settings = ExtResource("1_xyir2")
+horizontal_alignment = 1
+vertical_alignment = 1
