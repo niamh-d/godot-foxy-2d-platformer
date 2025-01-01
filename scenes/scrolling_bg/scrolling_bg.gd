@@ -40,7 +40,7 @@ const BG_FILES: Dictionary = {
 	]
 }
 
-@export_range(1, 4) var level_number: int = 1 
+@export_range(1, 4) var level_number: int 
 
 var mirror_x: float = 1440.0
 var sprite_scale: Vector2 = Vector2(0.75, 0.75)
@@ -55,8 +55,8 @@ func _ready():
 func get_increment() -> float:
 	return 1.0 / BG_FILES[level_number].size()
 
-
-func get_sprite(t: Texture2D) -> Sprite2D:
+ 
+func get_sprite(t: Texture2D) -> Sprite2D: 
 	var sprite = Sprite2D.new()
 	sprite.texture = t
 	sprite.scale = sprite_scale

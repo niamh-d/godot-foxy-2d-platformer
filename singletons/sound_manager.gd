@@ -31,7 +31,7 @@ var SOUNDS: Dictionary = {
 }
 
 func play_clip(player: AudioStreamPlayer2D, clip_key: String) -> void:
-	if SOUNDS.has(clip_key) == false:
+	if !SOUNDS.has(clip_key):
 		return
 	player.stream = SOUNDS[clip_key]
 	player.play()

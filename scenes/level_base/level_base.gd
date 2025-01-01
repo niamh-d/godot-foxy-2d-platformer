@@ -4,7 +4,10 @@ func _ready() -> void:
 	SignalManager.on_game_over.connect(on_game_over)
 
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_pressed("advance"):
+		GameManager.load_next_lvl_scene()
+	if Input.is_action_just_pressed("quit"):
+		GameManager.load_main_scene()
 
 func kill(item) -> void:
 	item.set_process(false)

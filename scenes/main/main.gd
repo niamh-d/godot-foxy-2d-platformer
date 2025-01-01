@@ -3,9 +3,12 @@ extends Control
 @onready var grid_container: GridContainer = $MarginContainer/GridContainer
 const HIGHSCORE_LABEL = preload("res://scenes/highscore_label/highscore_label.tscn")
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_scores()
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("jump"):
+		GameManager.load_next_lvl_scene()
 
 func set_scores() -> void:
 	for c in grid_container.get_children():
