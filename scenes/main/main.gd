@@ -6,7 +6,7 @@ const HIGHSCORE_LABEL = preload("res://scenes/highscore_label/highscore_label.ts
 func _ready() -> void:
 	set_scores()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		GameManager.load_next_lvl_scene()
 

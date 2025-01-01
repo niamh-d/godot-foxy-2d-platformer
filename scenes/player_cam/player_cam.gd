@@ -11,7 +11,7 @@ func _ready() -> void:
 	SignalManager.on_player_hit.connect(on_player_hit)
 	SignalManager.on_game_over.connect(on_game_over)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	offset = get_random_offset()
 
 func get_random_offset() -> Vector2:

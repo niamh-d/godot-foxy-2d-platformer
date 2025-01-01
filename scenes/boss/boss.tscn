@@ -226,6 +226,7 @@ texture = ExtResource("1_7gpah")
 position = Vector2(1, -31)
 collision_layer = 4
 collision_mask = 8
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Visual/HitBox"]
 shape = SubResource("RectangleShape2D_imryd")

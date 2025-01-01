@@ -6,6 +6,7 @@ extends Node2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
 @onready var visual: Node2D = $Visual
+@onready var hit_box: Area2D = $Visual/HitBox
 
 const TRIGGER_CONDITION: String = "parameters/conditions/on_trigger"
 const PLAYER_DAMAGE: int = 1
@@ -18,6 +19,7 @@ func is_dead() -> bool:
 	
 func die() -> void:
 	SignalManager.on_boss_killed.emit(points)
+	_tween.kill()
 	queue_free()
 
 func reduce_lives(damage: int)-> void:
@@ -42,8 +44,9 @@ func take_damage()-> void:
 	tween_hit()
 	reduce_lives(PLAYER_DAMAGE)
 
-func _on_trigger_area_entered(area: Area2D) -> void:
+func _on_trigger_area_entered(_area: Area2D) -> void:
 	animation_tree[TRIGGER_CONDITION] = true
+	hit_box.monitoring = true
 
-func _on_hit_box_area_entered(area: Area2D) -> void:
+func _on_hit_box_area_entered(_area: Area2D) -> void:
 	take_damage()

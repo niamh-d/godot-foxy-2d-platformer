@@ -1,7 +1,7 @@
 extends Node
 
 const SCORE_FILE: String = "user://FoxyScores.json"
-const MAX_SCORES = 10
+const MAX_NUM_SCORES = 10
 
 var _score: int = 0
 var _scores_history: Array = []
@@ -15,10 +15,13 @@ func _ready() -> void:
 
 func get_score_history() -> Array[int]:
 	var h: Array[int] = []
-	for s in _scores_history.slice(0, MAX_SCORES):
+	for s in slice_scores():
 		if s.score != 0:
 			h.push_back(int(s.score))
 	return h
+
+func slice_scores() -> Array:
+	return _scores_history.slice(0, MAX_NUM_SCORES) 
 
 func update_score(p: int) -> void:
 	_score += p
@@ -38,7 +41,7 @@ func save_scores():
 	_scores_history.sort_custom(compare_scores)
 	var file = FileAccess.open(SCORE_FILE, FileAccess.WRITE)
 	if file:
-		file.store_string(JSON.stringify(_scores_history.slice(0, MAX_SCORES)))
+		file.store_string(JSON.stringify(slice_scores()))
 		file.close()
 
 func load_scores_history():
@@ -52,7 +55,6 @@ func load_scores_history():
 	else:
 		save_scores()
 	_scores_history.sort_custom(compare_scores)
-	print(_scores_history)
 
 func compare_scores(a, b):
 	return b.score < a.score

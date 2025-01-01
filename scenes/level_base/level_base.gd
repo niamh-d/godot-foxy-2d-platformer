@@ -3,7 +3,7 @@ extends Node2D
 func _ready() -> void:
 	SignalManager.on_game_over.connect(on_game_over)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed("advance"):
 		GameManager.load_next_lvl_scene()
 	if Input.is_action_just_pressed("quit"):
