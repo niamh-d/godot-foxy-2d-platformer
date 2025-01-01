@@ -91,7 +91,6 @@ monitoring = false
 script = ExtResource("1_8nt28")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, -32)
 texture = ExtResource("1_vssnt")
 hframes = 26
@@ -111,3 +110,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_cenn3")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/on_trigger = false
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
