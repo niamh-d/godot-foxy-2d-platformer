@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://b648qnlchkj7h"]
+[gd_scene load_steps=16 format=4 uid="uid://b648qnlchkj7h"]
 
 [ext_resource type="Texture2D" uid="uid://cetofg3s4ta7t" path="res://assets/tiles/Terrain (16x16).png" id="1_i0q12"]
 [ext_resource type="Script" path="res://scenes/level_base/level_base.gd" id="1_jx5v4"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://2g2ndhnvokkh" path="res://scenes/floor_spikes/floor_spikes.tscn" id="9_8e26c"]
 [ext_resource type="PackedScene" uid="uid://cyfyqfyggd324" path="res://scenes/hud/hud.tscn" id="10_3oemn"]
 [ext_resource type="PackedScene" uid="uid://nytdtwgom8mh" path="res://scenes/moving_platform/moving_platform.tscn" id="11_ghnun"]
+[ext_resource type="PackedScene" uid="uid://d23f85tvnu14d" path="res://scenes/boss/boss.tscn" id="12_45wml"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x0vfm"]
 texture = ExtResource("1_i0q12")
@@ -241,7 +242,7 @@ tile_map_data = PackedByteArray("AAAAAP//AAAGAAAAAAABAP//AAAGAAAAAAACAP//AAAGAAA
 tile_set = SubResource("TileSet_w7m0q")
 
 [node name="Player" parent="." instance=ExtResource("2_qjfpu")]
-position = Vector2(114, -82)
+position = Vector2(471, -51)
 
 [node name="ObjectMaker" parent="." instance=ExtResource("3_1b3y4")]
 
@@ -283,3 +284,6 @@ position = Vector2(37, -52)
 [node name="MovingPlatform" parent="MovingPlatforms" node_paths=PackedStringArray("destination") instance=ExtResource("11_ghnun")]
 position = Vector2(-63, -51)
 destination = NodePath("../P1")
+
+[node name="Boss" parent="." instance=ExtResource("12_45wml")]
+position = Vector2(635, -12)
