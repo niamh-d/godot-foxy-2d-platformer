@@ -19,7 +19,6 @@ func is_dead() -> bool:
 	
 func die() -> void:
 	SignalManager.on_boss_killed.emit(points)
-	_tween.kill()
 	queue_free()
 
 func reduce_lives(damage: int)-> void:
@@ -28,7 +27,7 @@ func reduce_lives(damage: int)-> void:
 		die()
 
 func tween_hit() -> void:
-	_tween = get_tree().create_tween()
+	_tween = create_tween()
 	_tween.tween_property(visual, "position", Vector2.ZERO, 1.6)
 
 func set_invincible(inv: bool) -> void:
